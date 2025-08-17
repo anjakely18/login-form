@@ -1,53 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign in</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 flex flex-col items-center justify-center h-screen">
+{% extends "base.twig" %}
+
+{% block title %}Sign in{% endblock %}
+
+{% block content %}
 <div class="text-center mb-6">
     <img src="assets/logo.svg" alt="Logo" class="mx-auto h-12 w-12 mb-2">
     <h1 class="text-2xl font-semibold mt-2">Sign in to your account</h1>
 </div>
-    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
 
-        <form method="POST" class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Email address</label>
-                <input type="text" name="username" class="mt-1 w-full p-2 border border-gray-300 rounded" required>
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" name="password" class="mt-1 w-full p-2 border border-gray-300 rounded" required>
-            </div>
-            <div class="flex items-center justify-between text-sm">
-                <label class="flex items-center gap-2">
-                    <input type="checkbox" class="h-4 w-4">
-                    Remember me
-                </label>
-                <a href="#" class="text-indigo-600 hover:underline">Forgot password?</a>
-            </div>
-            <button type="submit" class="w-full bg-indigo-600 text-white p-2 rounded hover:bg-purple-700">Sign in</button>
-        </form>
-        
-        <div class="mt-6 text-center text-sm text-gray-500">
-            Or continue with
-        </div>
-        <div class="mt-2 flex justify-center gap-4">
-            <button class="flex items-center gap-2 border p-2 rounded hover:bg-gray-100">
-                <img src="assets/google-logo.svg" alt="Google" class="w-5 h-5">
-                Google
-            </button>
-            <button class="flex items-center gap-2 border p-2 rounded hover:bg-gray-100">
-                <img src="assets/github-logo.svg" alt="GitHub" class="w-5 h-5">
-                GitHub
-            </button>
-        </div>
-        
-        <div class="mt-6 text-center text-sm text-gray-500">
-            Not a member? <a href="#" class="text-indigo-600 hover:underline">Start a 14 day free trial</a>
-        </div>
+{% if message %}
+    <div class="mb-4 px-4 py-2 rounded {{ message.type == 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+        {{ message.text }}
     </div>
-</body>
-</html>
+{% endif %}
+
+<div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+    <form method="POST" class="space-y-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Email address</label>
+            <input type="text" name="username" class="mt-1 w-full p-2 border border-gray-300 rounded" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" name="password" class="mt-1 w-full p-2 border border-gray-300 rounded" required>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+            <label class="flex items-center gap-2">
+                <input type="checkbox" class="h-4 w-4">
+                Remember me
+            </label>
+            <a href="#" class="text-indigo-600 hover:underline">Forgot password?</a>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white p-2 rounded hover:bg-purple-700">Sign in</button>
+    </form>
+    
+    <div class="mt-6 text-center text-sm text-gray-500">
+        Or continue with
+    </div>
+    <div class="mt-2 flex justify-center gap-4">
+        <button class="flex items-center gap-2 border p-2 rounded hover:bg-gray-100">
+            <img src="assets/google-logo.svg" alt="Google" class="w-5 h-5">
+            Google
+        </button>
+        <button class="flex items-center gap-2 border p-2 rounded hover:bg-gray-100">
+            <img src="assets/github-logo.svg" alt="GitHub" class="w-5 h-5">
+            GitHub
+        </button>
+    </div>
+    
+    <div class="mt-6 text-center text-sm text-gray-500">
+        Not a member? <a href="#" class="text-indigo-600 hover:underline">Start a 14 day free trial</a>
+    </div>
+</div>
+{% endblock %}
